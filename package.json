@@ -1,0 +1,31 @@
+{
+  "name": "mojangson.js",
+  "version": "2.2.0",
+  "description": "A lightweight mojangson parser",
+  "main": "dist/main.js",
+  "scripts": {
+    "test": "echo **Error** No test specified.",
+    "prepublishOnly": "npm run build",
+    "build": "tsc",
+    "docs": "typedoc src/main.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Team-ThinkCord/discord-kommando.js.git"
+  },
+  "keywords": [
+    "mojangson",
+    "parser"
+  ],
+  "author": "Icetang0123",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Team-ThinkCord/discord-kommando.js/issues"
+  },
+  "homepage": "https://github.com/Team-ThinkCord/discord-kommando.js#readme",
+  "devDependencies": {
+    "@types/node": "^17.0.30",
+    "typedoc": "^0.23.28",
+    "typescript": "^4.8.4"
+  }
+}
