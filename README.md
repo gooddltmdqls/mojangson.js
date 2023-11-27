@@ -1,82 +1,22 @@
-# discord-kommando.js
-An automatic interaction handler for discord.js
+# mojangson.js
+A lightweight mojangson parser
 
-## Supported discord.js versions
-| Version | Status    |
-|---------|-----------|
-| v13     | Removed   |
-| v14     | Supported |
-
-## Tutorial
-<details><summary>JavaScript</summary>
-<p>
-Just.. Copy it!
-
+## Usage
+### Import
 ```js
 // CommonJS
-const { KommandoClient } = require('discord-kommando.js/v14');
+const { Parser } = require("mojangson.js");
 
-// ESM
-import { KommandoClient } from 'discord-kommando.js/v14';
-
-const client = new KommandoClient({ directory: "src/kommando" });
-
-client.login('your-token-goes-here');
+// Or ESM, TypeScript?
+import Parser from "mojangson.js";
 ```
 
-</p>
-</details>
-
-<details><summary>TypeScript</summary>
-<p>
-You need to change tsconfig.json before using it.
-
-```json
-{
-    "compilerOptions": {
-        "moduleResolution": "NodeNext"
-    }
-}
+```html
+<script src="">
 ```
 
-And copy it to your main file...
-
-```ts
-import { KommandoClient } from 'discord-kommando.js/v14';
-
-const client = new KommandoClient({ directory: "dist/kommando" });
-
-client.login('your-token-goes-here');
-```
-</p>
-</details>
-
-### Adding commands
-Copy and add this code into (directory in your client constructor)/commands folder
-
+### Use parser
 ```js
-// Import the 'Command' class
-
-const command = new Command({
-    name: "first_command",
-    description: "description (required)",
-    options: [
-        { name: "first_option", description: "description (required)", type: "string" }
-    ]
-});
-
-command.handle(async itr => {
-    // Do something
-});
-
-// Export it.
-module.exports = command;
-
-// Or ESM, Typescript?
-export default command;
+// input: string
+Parser.parse(input); // -> NBTCompound
 ```
-
-## Documentation
-[Documentation link][docs]
-
-[docs]: https://discord-kommando.js.org
