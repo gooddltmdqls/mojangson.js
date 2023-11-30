@@ -1,0 +1,36 @@
+import { NBTCompound } from "../value/NBTCompound";
+export declare class Parser {
+    private static DOUBLE_NS;
+    private static DOUBLE_S;
+    private static FLOAT;
+    private static BYTE;
+    private static LONG;
+    private static SHORT;
+    private static INT;
+    private str;
+    private index;
+    static parse(mson: string): NBTCompound;
+    private constructor();
+    private parseRootCompound;
+    private parseCompoundKey;
+    private parseStringOrLiteral;
+    private parseLiteral;
+    private parseQuotedString;
+    private parseSimpleString;
+    private parseAnything;
+    private parseDetectedArray;
+    private parseCompound;
+    private parseList;
+    private parseNumArray;
+    private advanceToNextArrayElement;
+    private skipWhitespace;
+    private hasCharsLeft;
+    private hasNext;
+    private getChar;
+    private currentChar;
+    private nextChar;
+    private expectChar;
+    private expectNoTrail;
+    private parseException;
+    private static isSimpleChar;
+}
