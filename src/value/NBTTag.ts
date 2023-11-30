@@ -1,4 +1,4 @@
-import { NBTType } from "./NBTType";
+import { NBTType } from "./NBTType.js";
 
 export abstract class NBTTag {
     public abstract getValue(): any;

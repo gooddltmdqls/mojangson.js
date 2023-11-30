@@ -1,19 +1,17 @@
-import { NBTByte } from "../value/NBTByte";
-import { NBTByteArray } from "../value/NBTByteArray";
-import { NBTCompound } from "../value/NBTCompound";
-import { NBTDouble } from "../value/NBTDouble";
-import { NBTFloat } from "../value/NBTFloat";
-import { NBTInt } from "../value/NBTInt";
-import { NBTIntArray } from "../value/NBTIntArray";
-import { NBTList } from "../value/NBTList";
-import { NBTLong } from "../value/NBTLong";
-import { NBTLongArray } from "../value/NBTLongArray";
-import { NBTNamedTag } from "../value/NBTNamedTag";
-import { NBTShort } from "../value/NBTShort";
-import { NBTString } from "../value/NBTString";
-import { NBTTag } from "../value/NBTTag";
-import { NBTType } from "../value/NBTType";
-import { ParserError } from "./ParserError";
+import { NBTByte } from "../value/NBTByte.js";
+import { NBTByteArray } from "../value/NBTByteArray.js";
+import { NBTCompound } from "../value/NBTCompound.js";
+import { NBTDouble } from "../value/NBTDouble.js";
+import { NBTFloat } from "../value/NBTFloat.js";
+import { NBTInt } from "../value/NBTInt.js";
+import { NBTIntArray } from "../value/NBTIntArray.js";
+import { NBTList } from "../value/NBTList.js";
+import { NBTLong } from "../value/NBTLong.js";
+import { NBTLongArray } from "../value/NBTLongArray.js";
+import { NBTShort } from "../value/NBTShort.js";
+import { NBTString } from "../value/NBTString.js";
+import { NBTType } from "../value/NBTType.js";
+import { ParserError } from "./ParserError.js";
 
 export class Parser {
     

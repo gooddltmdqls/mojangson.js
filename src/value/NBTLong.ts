@@ -1,5 +1,5 @@
-import { NBTTag } from "./NBTTag";
-import { NBTType } from "./NBTType";
+import { NBTTag } from "./NBTTag.js";
+import { NBTType } from "./NBTType.js";
 
 export class NBTLong extends NBTTag {
 

@@ -1,17 +1,17 @@
-import { NBTByte } from "./NBTByte";
-import { NBTByteArray } from "./NBTByteArray";
-import { NBTDouble } from "./NBTDouble";
-import { NBTFloat } from "./NBTFloat";
-import { NBTInt } from "./NBTInt";
-import { NBTIntArray } from "./NBTIntArray";
-import { NBTList } from "./NBTList";
-import { NBTLong } from "./NBTLong";
-import { NBTLongArray } from "./NBTLongArray";
-import { NBTNamedTag } from "./NBTNamedTag";
-import { NBTShort } from "./NBTShort";
-import { NBTString } from "./NBTString";
-import { NBTTag } from "./NBTTag";
-import { NBTType } from "./NBTType";
+import { NBTByte } from "./NBTByte.js";
+import { NBTByteArray } from "./NBTByteArray.js";
+import { NBTDouble } from "./NBTDouble.js";
+import { NBTFloat } from "./NBTFloat.js";
+import { NBTInt } from "./NBTInt.js";
+import { NBTIntArray } from "./NBTIntArray.js";
+import { NBTList } from "./NBTList.js";
+import { NBTLong } from "./NBTLong.js";
+import { NBTLongArray } from "./NBTLongArray.js";
+import { NBTNamedTag } from "./NBTNamedTag.js";
+import { NBTShort } from "./NBTShort.js";
+import { NBTString } from "./NBTString.js";
+import { NBTTag } from "./NBTTag.js";
+import { NBTType } from "./NBTType.js";
 
 export class NBTCompound extends NBTTag {
     
@@ -188,6 +188,10 @@ export class NBTCompound extends NBTTag {
     
     public putString(key: string, value: string) {
         this.put(key, new NBTString(value));
+    }
+
+    public removeKey(key: string) {
+        this.value.delete(key);
     }
     
     public forEach(action: (key: String, value: NBTTag) => any) {

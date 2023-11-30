@@ -1,5 +1,5 @@
-import { NBTTag } from "./NBTTag";
-import { NBTType } from "./NBTType";
+import { NBTTag } from "./NBTTag.js";
+import { NBTType } from "./NBTType.js";
 
 export class NBTString extends NBTTag {
 
@@ -32,6 +32,18 @@ export class NBTString extends NBTTag {
     }
     
     public static toMSONString(str: String) {
-        return `"${str}"`;
+        let output = '"';
+        const chars = str.split("");
+
+        for (const c of chars) {
+            if ((c == '\\') || (c == '"')) {
+                output += '\\';
+            }
+            output += c;
+        }
+
+        output += '"';
+
+        return output;
     }
 }

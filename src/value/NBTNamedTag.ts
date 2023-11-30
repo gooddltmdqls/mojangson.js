@@ -1,5 +1,4 @@
-import { NBTString } from "./NBTString";
-import { NBTTag } from "./NBTTag";
+import { NBTTag } from "./NBTTag.js";
 
 export class NBTNamedTag<T extends NBTTag> {
 

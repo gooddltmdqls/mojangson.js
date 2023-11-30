@@ -1,5 +1,5 @@
-import { NBTTag } from "./NBTTag";
-import { NBTType } from "./NBTType";
+import { NBTTag } from "./NBTTag.js";
+import { NBTType } from "./NBTType.js";
 
 export class NBTList<T extends NBTTag> extends NBTTag {
     private type: NBTType | null;
@@ -10,7 +10,7 @@ export class NBTList<T extends NBTTag> extends NBTTag {
         super();
 
         this.type = type ?? null;
-        if (value) this.list.concat(...value);
+        if (value) this.list = [ ...this.list, ...value ];
     }
 
     public size() {
