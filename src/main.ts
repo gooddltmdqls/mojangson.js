@@ -4,3 +4,8 @@ export * from "./parser";
 export * from "./value";
 
 export default Parser;
+
+// For web.
+function getParser() {
+    return Parser;
+}
