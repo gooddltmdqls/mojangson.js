@@ -8,7 +8,7 @@ A lightweight mojangson parser
 const { Parser } = require("mojangson.js");
 
 // Web
-const { Parser } = require("./mojangson/main");
+import Parser from "./mojangson/main.js";
 
 // Or ESM, TypeScript?
 import Parser from "mojangson.js";
@@ -17,13 +17,11 @@ import Parser from "mojangson.js";
 ### Web (Optional)
 If you want to use it on the web, you need to download and compile this project.
 
-Step 1, Download the source code.
+Step 1, Download files from [here](https://github.com/gooddltmdqls/mojangson.js/blob/web)
 
-Step 2, Download Node.JS and NPM.
+Step 2, Unzip it.
 
-Step 3, run `npm i typescript@4.8.4`.
-
-Step 4, move the contents of dist.
+Step 3, Copy and paste into your static directory.
 
 ### Use parser
 ```js
