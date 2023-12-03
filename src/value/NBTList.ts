@@ -10,7 +10,7 @@ export class NBTList<T extends NBTTag> extends NBTTag {
         super();
 
         this.type = type ?? null;
-        if (value) this.list = [ ...this.list, ...value ];
+        if (value) this.addAll(value);
     }
 
     public size() {
@@ -59,6 +59,10 @@ export class NBTList<T extends NBTTag> extends NBTTag {
         for (let value of values) {
             this.add(value);
         }
+    }
+
+    public remove(from: number, count: number = 1) {
+        this.list.splice(from, count);
     }
     
     public equals(obj: any) {

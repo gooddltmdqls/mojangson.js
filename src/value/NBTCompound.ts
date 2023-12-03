@@ -131,7 +131,7 @@ export class NBTCompound extends NBTTag {
     }
     
     public getKeys() {
-        return this.value.keys();
+        return this.value.keys() as IterableIterator<string>;
     }
     
     public isEmpty() {
@@ -210,7 +210,7 @@ export class NBTCompound extends NBTTag {
             if (string.length > 1) {
                 string += ",";
             }
-            string += NBTCompound.SIMPLE_STRING.test("key") ? key : NBTString.toMSONString(key)
+            string += (!!key.match(NBTCompound.SIMPLE_STRING) && key.match(NBTCompound.SIMPLE_STRING)!![0] == key.match(NBTCompound.SIMPLE_STRING)!!.input) ? key : NBTString.toMSONString(key)
             string += ':'
             string += this.value.get(key)!.toMSONString();
         }
