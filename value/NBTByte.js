@@ -1,7 +1,7 @@
-
-import * as NBTTag_1 from "./NBTTag.js";
-import * as NBTType_1 from "./NBTType.js";
-class NBTByte extends NBTTag_1.NBTTag {
+import { NBTTag } from "./NBTTag.js";
+import { NBTType } from "./NBTType.js";
+export class NBTByte extends NBTTag {
+    value;
     constructor(value) {
         super();
         this.value = value;
@@ -16,7 +16,7 @@ class NBTByte extends NBTTag_1.NBTTag {
         this.value = value;
     }
     getType() {
-        return NBTType_1.NBTType.BYTE;
+        return NBTType.BYTE;
     }
     toMSONString() {
         return this.getValue() + "b";
@@ -25,4 +25,3 @@ class NBTByte extends NBTTag_1.NBTTag {
         return new NBTByte(this.value);
     }
 }
-export {NBTByte}

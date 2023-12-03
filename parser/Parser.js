@@ -1,25 +1,33 @@
-
-import * as NBTByte_1 from "../value/NBTByte.js";
-import * as NBTByteArray_1 from "../value/NBTByteArray.js";
-import * as NBTCompound_1 from "../value/NBTCompound.js";
-import * as NBTDouble_1 from "../value/NBTDouble.js";
-import * as NBTFloat_1 from "../value/NBTFloat.js";
-import * as NBTInt_1 from "../value/NBTInt.js";
-import * as NBTIntArray_1 from "../value/NBTIntArray.js";
-import * as NBTList_1 from "../value/NBTList.js";
-import * as NBTLong_1 from "../value/NBTLong.js";
-import * as NBTLongArray_1 from "../value/NBTLongArray.js";
-import * as NBTShort_1 from "../value/NBTShort.js";
-import * as NBTString_1 from "../value/NBTString.js";
-import * as NBTType_1 from "../value/NBTType.js";
-import * as ParserError_1 from "./ParserError.js";
-class Parser {
+import { NBTByte } from "../value/NBTByte.js";
+import { NBTByteArray } from "../value/NBTByteArray.js";
+import { NBTCompound } from "../value/NBTCompound.js";
+import { NBTDouble } from "../value/NBTDouble.js";
+import { NBTFloat } from "../value/NBTFloat.js";
+import { NBTInt } from "../value/NBTInt.js";
+import { NBTIntArray } from "../value/NBTIntArray.js";
+import { NBTList } from "../value/NBTList.js";
+import { NBTLong } from "../value/NBTLong.js";
+import { NBTLongArray } from "../value/NBTLongArray.js";
+import { NBTShort } from "../value/NBTShort.js";
+import { NBTString } from "../value/NBTString.js";
+import { NBTType } from "../value/NBTType.js";
+import { ParserError } from "./ParserError.js";
+export class Parser {
+    static DOUBLE_NS = /[-+]?(?:[0-9]+[.]|[0-9]*[.][0-9]+)(?:e[-+]?[0-9]+)?/i;
+    static DOUBLE_S = /[-+]?(?:[0-9]+[.]?|[0-9]*[.][0-9]+)(?:e[-+]?[0-9]+)?d/i;
+    static FLOAT = /[-+]?(?:[0-9]+[.]?|[0-9]*[.][0-9]+)(?:e[-+]?[0-9]+)?f/i;
+    static BYTE = /[-+]?(?:0|[1-9][0-9]*)b/i;
+    static LONG = /[-+]?(?:0|[1-9][0-9]*)l/i;
+    static SHORT = /[-+]?(?:0|[1-9][0-9]*)s/i;
+    static INT = /[-+]?(?:0|[1-9][0-9]*)/i;
+    str;
+    index;
+    static parse(mson) {
+        return new Parser(mson).parseRootCompound();
+    }
     constructor(str) {
         this.str = str;
         this.index = 0;
-    }
-    static parse(mson) {
-        return new Parser(mson).parseRootCompound();
     }
     parseRootCompound() {
         let result;
@@ -41,7 +49,7 @@ class Parser {
     parseStringOrLiteral() {
         this.skipWhitespace();
         if (this.currentChar() == '"')
-            return new NBTString_1.NBTString(this.parseQuotedString());
+            return new NBTString(this.parseQuotedString());
         let str = this.parseSimpleString();
         if (!str.length)
             throw this.parseException("Expected value");
@@ -50,37 +58,37 @@ class Parser {
     parseLiteral(str) {
         try {
             if (matchWithRegExp(str, Parser.FLOAT)) {
-                return new NBTFloat_1.NBTFloat(parseInt(str.substring(0, str.length - 1)));
+                return new NBTFloat(parseInt(str.substring(0, str.length - 1)));
             }
             if (matchWithRegExp(str, Parser.BYTE)) {
-                return new NBTByte_1.NBTByte(parseInt(str.substring(0, str.length - 1)));
+                return new NBTByte(parseInt(str.substring(0, str.length - 1)));
             }
             if (matchWithRegExp(str, Parser.LONG)) {
-                return new NBTLong_1.NBTLong(parseInt(str.substring(0, str.length - 1)));
+                return new NBTLong(parseInt(str.substring(0, str.length - 1)));
             }
             if (matchWithRegExp(str, Parser.SHORT)) {
-                return new NBTShort_1.NBTShort(parseInt(str.substring(0, str.length - 1)));
+                return new NBTShort(parseInt(str.substring(0, str.length - 1)));
             }
             if (matchWithRegExp(str, Parser.INT)) {
-                return new NBTInt_1.NBTInt(parseInt(str));
+                return new NBTInt(parseInt(str));
             }
             if (matchWithRegExp(str, Parser.DOUBLE_S)) {
-                return new NBTDouble_1.NBTDouble(parseInt(str.substring(0, str.length - 1)));
+                return new NBTDouble(parseInt(str.substring(0, str.length - 1)));
             }
             if (matchWithRegExp(str, Parser.DOUBLE_NS)) {
-                return new NBTDouble_1.NBTDouble(parseInt(str));
+                return new NBTDouble(parseInt(str));
             }
             if (matchWithRegExp(str, /true/i)) {
-                return new NBTByte_1.NBTByte(1);
+                return new NBTByte(1);
             }
             if (matchWithRegExp(str, /false/i)) {
-                return new NBTByte_1.NBTByte(0);
+                return new NBTByte(0);
             }
         }
         catch (e) {
-            return new NBTString_1.NBTString(str);
+            return new NBTString(str);
         }
-        return new NBTString_1.NBTString(str);
+        return new NBTString(str);
     }
     parseQuotedString() {
         let j = ++this.index;
@@ -140,7 +148,7 @@ class Parser {
     }
     parseCompound() {
         this.expectChar('{');
-        let compound = new NBTCompound_1.NBTCompound();
+        let compound = new NBTCompound();
         this.skipWhitespace();
         while ((this.hasNext()) && (this.currentChar() != '}')) {
             let str = this.parseCompoundKey();
@@ -165,7 +173,7 @@ class Parser {
         if (!this.hasNext()) {
             throw this.parseException("Expected value");
         }
-        let list = new NBTList_1.NBTList();
+        let list = new NBTList();
         let listType = null;
         while (this.currentChar() != ']') {
             let element = this.parseAnything();
@@ -198,11 +206,11 @@ class Parser {
                 throw this.parseException("Expected value");
             }
             if (arrayType1 == 'B')
-                return this.parseNumArray(NBTType_1.NBTType.BYTE_ARRAY, NBTType_1.NBTType.BYTE);
+                return this.parseNumArray(NBTType.BYTE_ARRAY, NBTType.BYTE);
             else if (arrayType1 == 'L')
-                return this.parseNumArray(NBTType_1.NBTType.LONG_ARRAY, NBTType_1.NBTType.LONG);
+                return this.parseNumArray(NBTType.LONG_ARRAY, NBTType.LONG);
             else if (arrayType1 == 'I')
-                return this.parseNumArray(NBTType_1.NBTType.INT_ARRAY, NBTType_1.NBTType.INT);
+                return this.parseNumArray(NBTType.INT_ARRAY, NBTType.INT);
             else
                 throw this.parseException("Invalid array type '" + arrayType1 + "' found");
         }
@@ -213,10 +221,10 @@ class Parser {
             if (elementType != primType) {
                 throw this.parseException("Unable to insert " + elementType + " into " + arrayType);
             }
-            if (primType == NBTType_1.NBTType.BYTE) {
+            if (primType == NBTType.BYTE) {
                 result.push(element.getValue());
             }
-            else if (primType == NBTType_1.NBTType.LONG) {
+            else if (primType == NBTType.LONG) {
                 result.push(element.getValue());
             }
             else {
@@ -230,12 +238,12 @@ class Parser {
             }
         }
         this.expectChar(']');
-        if (arrayType == NBTType_1.NBTType.BYTE_ARRAY)
-            return new NBTByteArray_1.NBTByteArray(result);
-        else if (arrayType == NBTType_1.NBTType.LONG_ARRAY)
-            return new NBTLongArray_1.NBTLongArray(result);
-        else if (arrayType == NBTType_1.NBTType.INT_ARRAY)
-            return new NBTIntArray_1.NBTIntArray(result);
+        if (arrayType == NBTType.BYTE_ARRAY)
+            return new NBTByteArray(result);
+        else if (arrayType == NBTType.LONG_ARRAY)
+            return new NBTLongArray(result);
+        else if (arrayType == NBTType.INT_ARRAY)
+            return new NBTIntArray(result);
         else
             throw this.parseException("Invalid array type '" + arrayType.getName() + "' found");
     }
@@ -276,7 +284,7 @@ class Parser {
             this.index += 1;
             return;
         }
-        throw new ParserError_1.ParserError("Expected '" + c + "' but got '" + (hasNext ? this.currentChar() : "<EOF>") + "'", this.str, this.index + 1);
+        throw new ParserError("Expected '" + c + "' but got '" + (hasNext ? this.currentChar() : "<EOF>") + "'", this.str, this.index + 1);
     }
     expectNoTrail() {
         this.skipWhitespace();
@@ -286,7 +294,7 @@ class Parser {
         }
     }
     parseException(paramString) {
-        return new ParserError_1.ParserError(paramString, this.str, this.index);
+        return new ParserError(paramString, this.str, this.index);
     }
     static isSimpleChar(paramChar) {
         return (paramChar >= '0' && paramChar <= '9')
@@ -298,14 +306,6 @@ class Parser {
             || paramChar == '+';
     }
 }
-export { Parser }
-Parser.DOUBLE_NS = /[-+]?(?:[0-9]+[.]|[0-9]*[.][0-9]+)(?:e[-+]?[0-9]+)?/i;
-Parser.DOUBLE_S = /[-+]?(?:[0-9]+[.]?|[0-9]*[.][0-9]+)(?:e[-+]?[0-9]+)?d/i;
-Parser.FLOAT = /[-+]?(?:[0-9]+[.]?|[0-9]*[.][0-9]+)(?:e[-+]?[0-9]+)?f/i;
-Parser.BYTE = /[-+]?(?:0|[1-9][0-9]*)b/i;
-Parser.LONG = /[-+]?(?:0|[1-9][0-9]*)l/i;
-Parser.SHORT = /[-+]?(?:0|[1-9][0-9]*)s/i;
-Parser.INT = /[-+]?(?:0|[1-9][0-9]*)/i;
 function isWhitespace(c) {
     return c === ' '
         || c === '\n'

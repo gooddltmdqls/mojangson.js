@@ -1,13 +1,13 @@
-
-import * as NBTTag_1 from "./NBTTag.js";
-import * as NBTType_1 from "./NBTType.js";
-class NBTList extends NBTTag_1.NBTTag {
+import { NBTTag } from "./NBTTag.js";
+import { NBTType } from "./NBTType.js";
+export class NBTList extends NBTTag {
+    type;
+    list = [];
     constructor(type, ...value) {
         super();
-        this.list = [];
         this.type = type ?? null;
         if (value)
-            this.list = [ ...this.list, ...value ];
+            this.addAll(value);
     }
     size() {
         return this.list.length;
@@ -16,7 +16,7 @@ class NBTList extends NBTTag_1.NBTTag {
         return this.list;
     }
     getType() {
-        return NBTType_1.NBTType.LIST;
+        return NBTType.LIST;
     }
     getElementType() {
         return this.type;
@@ -48,6 +48,9 @@ class NBTList extends NBTTag_1.NBTTag {
             this.add(value);
         }
     }
+    remove(from, count = 1) {
+        this.list.splice(from, count);
+    }
     equals(obj) {
         return obj instanceof NBTList && obj.toMSONString() == this.toMSONString();
     }
@@ -65,6 +68,5 @@ class NBTList extends NBTTag_1.NBTTag {
         return new NBTList(this.type ?? undefined, ...this.list);
     }
 }
-export { NBTList }
 class IndexOutOfBoundsException extends Error {
 }

@@ -1,18 +1,19 @@
-
-import * as NBTByte_1 from "./NBTByte.js";
-import * as NBTByteArray_1 from "./NBTByteArray.js";
-import * as NBTDouble_1 from "./NBTDouble.js";
-import * as NBTFloat_1 from "./NBTFloat.js";
-import * as NBTInt_1 from "./NBTInt.js";
-import * as NBTIntArray_1 from "./NBTIntArray.js";
-import * as NBTList_1 from "./NBTList.js";
-import * as NBTLong_1 from "./NBTLong.js";
-import * as NBTLongArray_1 from "./NBTLongArray.js";
-import * as NBTShort_1 from "./NBTShort.js";
-import * as NBTString_1 from "./NBTString.js";
-import * as NBTTag_1 from "./NBTTag.js";
-import * as NBTType_1 from "./NBTType.js";
-class NBTCompound extends NBTTag_1.NBTTag {
+import { NBTByte } from "./NBTByte.js";
+import { NBTByteArray } from "./NBTByteArray.js";
+import { NBTDouble } from "./NBTDouble.js";
+import { NBTFloat } from "./NBTFloat.js";
+import { NBTInt } from "./NBTInt.js";
+import { NBTIntArray } from "./NBTIntArray.js";
+import { NBTList } from "./NBTList.js";
+import { NBTLong } from "./NBTLong.js";
+import { NBTLongArray } from "./NBTLongArray.js";
+import { NBTShort } from "./NBTShort.js";
+import { NBTString } from "./NBTString.js";
+import { NBTTag } from "./NBTTag.js";
+import { NBTType } from "./NBTType.js";
+export class NBTCompound extends NBTTag {
+    static SIMPLE_STRING = /[A-Za-z0-9._+-]+/;
+    value;
     constructor(value) {
         super();
         if (Array.isArray(value)) {
@@ -34,7 +35,7 @@ class NBTCompound extends NBTTag_1.NBTTag {
         return this.value;
     }
     getType() {
-        return NBTType_1.NBTType.COMPOUND;
+        return NBTType.COMPOUND;
     }
     getTag(key) {
         if (!this.hasKey(key))
@@ -43,49 +44,49 @@ class NBTCompound extends NBTTag_1.NBTTag {
     }
     getByte(key) {
         const tag = this.value.get(key);
-        if (!(tag instanceof NBTByte_1.NBTByte))
+        if (!(tag instanceof NBTByte))
             throw new NoSuchElementError(key);
         return tag.getValue();
     }
     getShort(key) {
         const tag = this.value.get(key);
-        if (!(tag instanceof NBTShort_1.NBTShort))
+        if (!(tag instanceof NBTShort))
             throw new NoSuchElementError(key);
         return tag.getValue();
     }
     getInt(key) {
         const tag = this.value.get(key);
-        if (!(tag instanceof NBTInt_1.NBTInt))
+        if (!(tag instanceof NBTInt))
             throw new NoSuchElementError(key);
         return tag.getValue();
     }
     getLong(key) {
         const tag = this.value.get(key);
-        if (!(tag instanceof NBTLong_1.NBTLong))
+        if (!(tag instanceof NBTLong))
             throw new NoSuchElementError(key);
         return tag.getValue();
     }
     getFloat(key) {
         const tag = this.value.get(key);
-        if (!(tag instanceof NBTFloat_1.NBTFloat))
+        if (!(tag instanceof NBTFloat))
             throw new NoSuchElementError(key);
         return tag.getValue();
     }
     getDouble(key) {
         const tag = this.value.get(key);
-        if (!(tag instanceof NBTDouble_1.NBTDouble))
+        if (!(tag instanceof NBTDouble))
             throw new NoSuchElementError(key);
         return tag.getValue();
     }
     getByteArray(key) {
         const tag = this.value.get(key);
-        if (!(tag instanceof NBTByteArray_1.NBTByteArray))
+        if (!(tag instanceof NBTByteArray))
             throw new NoSuchElementError(key);
         return tag.getValue();
     }
     getString(key) {
         const tag = this.value.get(key);
-        if (!(tag instanceof NBTString_1.NBTString))
+        if (!(tag instanceof NBTString))
             throw new NoSuchElementError(key);
         return tag.getValue();
     }
@@ -94,7 +95,7 @@ class NBTCompound extends NBTTag_1.NBTTag {
     }
     getTagList(key) {
         const tag = this.value.get(key);
-        if (!(tag instanceof NBTList_1.NBTList))
+        if (!(tag instanceof NBTList))
             throw new NoSuchElementError(key);
         return tag;
     }
@@ -109,13 +110,13 @@ class NBTCompound extends NBTTag_1.NBTTag {
     }
     getIntArray(key) {
         const tag = this.value.get(key);
-        if (!(tag instanceof NBTIntArray_1.NBTIntArray))
+        if (!(tag instanceof NBTIntArray))
             throw new NoSuchElementError(key);
         return tag.getValue();
     }
     getLongArray(key) {
         const tag = this.value.get(key);
-        if (!(tag instanceof NBTLongArray_1.NBTLongArray))
+        if (!(tag instanceof NBTLongArray))
             throw new NoSuchElementError(key);
         return tag.getValue();
     }
@@ -135,34 +136,37 @@ class NBTCompound extends NBTTag_1.NBTTag {
         this.value.set(name, tag);
     }
     putByteArray(key, value) {
-        this.put(key, new NBTByteArray_1.NBTByteArray(value));
+        this.put(key, new NBTByteArray(value));
     }
     putByte(key, value) {
-        this.put(key, new NBTByte_1.NBTByte(value));
+        this.put(key, new NBTByte(value));
     }
     putDouble(key, value) {
-        this.put(key, new NBTDouble_1.NBTDouble(value));
+        this.put(key, new NBTDouble(value));
     }
     putFloat(key, value) {
-        this.put(key, new NBTFloat_1.NBTFloat(value));
+        this.put(key, new NBTFloat(value));
     }
     putIntArray(key, value) {
-        this.put(key, new NBTIntArray_1.NBTIntArray(value));
+        this.put(key, new NBTIntArray(value));
     }
     putLongArray(key, value) {
-        this.put(key, new NBTLongArray_1.NBTLongArray(value));
+        this.put(key, new NBTLongArray(value));
     }
     putInt(key, value) {
-        this.put(key, new NBTInt_1.NBTInt(value));
+        this.put(key, new NBTInt(value));
     }
     putLong(key, value) {
-        this.put(key, new NBTLong_1.NBTLong(value));
+        this.put(key, new NBTLong(value));
     }
     putShort(key, value) {
-        this.put(key, new NBTShort_1.NBTShort(value));
+        this.put(key, new NBTShort(value));
     }
     putString(key, value) {
-        this.put(key, new NBTString_1.NBTString(value));
+        this.put(key, new NBTString(value));
+    }
+    removeKey(key) {
+        this.value.delete(key);
     }
     forEach(action) {
         this.value.forEach((v, k) => action(k, v));
@@ -177,14 +181,12 @@ class NBTCompound extends NBTTag_1.NBTTag {
             if (string.length > 1) {
                 string += ",";
             }
-            string += NBTCompound.SIMPLE_STRING.test("key") ? key : NBTString_1.NBTString.toMSONString(key);
+            string += (!!key.match(NBTCompound.SIMPLE_STRING) && key.match(NBTCompound.SIMPLE_STRING)[0] == key.match(NBTCompound.SIMPLE_STRING).input) ? key : NBTString.toMSONString(key);
             string += ':';
             string += this.value.get(key).toMSONString();
         }
         return string += "}";
     }
 }
-export {NBTCompound}
-NBTCompound.SIMPLE_STRING = /[A-Za-z0-9._+-]+/;
 class NoSuchElementError extends Error {
 }

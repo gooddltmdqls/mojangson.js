@@ -1,5 +1,4 @@
-
-class ParserError extends Error {
+export class ParserError extends Error {
     constructor(msg, content, index) {
         super(msg + " at: " + ParserError.printErrorLoc(content, index));
     }
@@ -14,4 +13,3 @@ class ParserError extends Error {
         return string.toString();
     }
 }
-export { ParserError }

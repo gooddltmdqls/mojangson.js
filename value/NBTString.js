@@ -1,7 +1,7 @@
-
-import * as NBTTag_1 from "./NBTTag.js";
-import * as NBTType_1 from "./NBTType.js";
-class NBTString extends NBTTag_1.NBTTag {
+import { NBTTag } from "./NBTTag.js";
+import { NBTType } from "./NBTType.js";
+export class NBTString extends NBTTag {
+    value;
     constructor(value) {
         super();
         this.value = value;
@@ -13,7 +13,7 @@ class NBTString extends NBTTag_1.NBTTag {
         this.value = value;
     }
     getType() {
-        return NBTType_1.NBTType.STRING;
+        return NBTType.STRING;
     }
     toMSONString() {
         return NBTString.toMSONString(this.value);
@@ -24,17 +24,13 @@ class NBTString extends NBTTag_1.NBTTag {
     static toMSONString(str) {
         let output = '"';
         const chars = str.split("");
-
         for (const c of chars) {
             if ((c == '\\') || (c == '"')) {
                 output += '\\';
             }
             output += c;
         }
-
         output += '"';
-
         return output;
     }
 }
-export { NBTString }

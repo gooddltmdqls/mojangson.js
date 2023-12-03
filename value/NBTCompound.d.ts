@@ -1,7 +1,7 @@
-import { NBTList } from "./NBTList";
-import { NBTNamedTag } from "./NBTNamedTag";
-import { NBTTag } from "./NBTTag";
-import { NBTType } from "./NBTType";
+import { NBTList } from "./NBTList.js";
+import { NBTNamedTag } from "./NBTNamedTag.js";
+import { NBTTag } from "./NBTTag.js";
+import { NBTType } from "./NBTType.js";
 export declare class NBTCompound extends NBTTag {
     private static SIMPLE_STRING;
     private value;
@@ -24,7 +24,7 @@ export declare class NBTCompound extends NBTTag {
     getCompoundTag(key: string): NBTCompound;
     getIntArray(key: string): number[];
     getLongArray(key: string): number[];
-    getKeys(): IterableIterator<String>;
+    getKeys(): IterableIterator<string>;
     isEmpty(): boolean;
     hasKey(key: string): boolean;
     hasKeyOfType(key: string, type: NBTType): boolean;
@@ -39,6 +39,7 @@ export declare class NBTCompound extends NBTTag {
     putLong(key: string, value: number): void;
     putShort(key: string, value: number): void;
     putString(key: string, value: string): void;
+    removeKey(key: string): void;
     forEach(action: (key: String, value: NBTTag) => any): void;
     equals(obj: any): boolean;
     toMSONString(): string;

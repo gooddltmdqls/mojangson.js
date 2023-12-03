@@ -1,4 +1,4 @@
-import { NBTTag } from "./NBTTag";
+import { NBTTag } from "./NBTTag.js";
 export declare class NBTNamedTag<T extends NBTTag> {
     private name;
     private tag;

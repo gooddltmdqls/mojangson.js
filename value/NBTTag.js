@@ -1,4 +1,4 @@
-class NBTTag {
+export class NBTTag {
     equals(obj) {
         if (obj instanceof NBTTag) {
             return this.getType() == obj.getType()
@@ -10,5 +10,3 @@ class NBTTag {
         return this.toMSONString();
     }
 }
-
-export { NBTTag }

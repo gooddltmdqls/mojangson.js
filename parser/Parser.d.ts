@@ -1,4 +1,4 @@
-import { NBTCompound } from "../value/NBTCompound";
+import { NBTCompound } from "../value/NBTCompound.js";
 export declare class Parser {
     private static DOUBLE_NS;
     private static DOUBLE_S;

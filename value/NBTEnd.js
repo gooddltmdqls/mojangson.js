@@ -1,13 +1,13 @@
-
-import * as NBTTag_1 from "./NBTTag.js";
-import * as NBTType_1 from "./NBTType.js";
-class NBTEnd extends NBTTag_1.NBTTag {
+import { NBTTag } from "./NBTTag.js";
+import { NBTType } from "./NBTType.js";
+export class NBTEnd extends NBTTag {
+    static INSTANCE = new NBTEnd();
     NBTEnd() { }
     getValue() {
         return null;
     }
     getType() {
-        return NBTType_1.NBTType.END;
+        return NBTType.END;
     }
     equals(obj) {
         return obj instanceof NBTEnd;
@@ -19,5 +19,3 @@ class NBTEnd extends NBTTag_1.NBTTag {
         return new NBTEnd();
     }
 }
-export { NBTEnd }
-NBTEnd.INSTANCE = new NBTEnd();

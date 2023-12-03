@@ -1,5 +1,3 @@
-
-
 export * from "./NBTByte.js";
 export * from "./NBTByteArray.js";
 export * from "./NBTCompound.js";

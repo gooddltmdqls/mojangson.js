@@ -1,5 +1,5 @@
-import { NBTTag } from "./NBTTag";
-import { NBTType } from "./NBTType";
+import { NBTTag } from "./NBTTag.js";
+import { NBTType } from "./NBTType.js";
 export declare class NBTFloat extends NBTTag {
     private value;
     constructor(value: number);
